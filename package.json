@@ -1,0 +1,27 @@
+{
+  "name": "deployless",
+  "version": "0.1.0",
+  "description": "A small utility to deploy AWS lambda code via S3.",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "aws",
+    "lambda"
+  ],
+  "author": "Adam Simpson",
+  "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "git@github.com:asimpson/deployless.git"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.10.0",
+    "eslint": "^3.15.0",
+    "eslint-config-sparkbox": "^0.4.0",
+    "globby": "^6.1.0",
+    "shelljs": "^0.7.6"
+  }
+}
