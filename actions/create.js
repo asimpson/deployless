@@ -5,16 +5,16 @@ const zip = require('../utils/zip');
 const lambda = new aws.Lambda({ region: 'us-east-1' });
 
 const create = (args) => {
-  zip(args)
-  .then(() => upload(args))
+  zip(args);
+  upload(args)
   .then(() => {
     const params = {
       Code: {
         S3Bucket: args.bucket,
-        S3Key: args.key,
+        S3Key: args.key || `${args.name}.zip`,
       },
       FunctionName: args.name,
-      Handler: args.handler || args.name,
+      Handler: args.handler || `${args.name}.handler`,
       Role: args.role,
       Runtime: 'nodejs4.3',
       Publish: true,

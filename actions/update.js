@@ -5,12 +5,12 @@ const zip = require('../utils/zip');
 const lambda = new aws.Lambda({ region: 'us-east-1' });
 
 const update = (args) => {
-  zip(args)
-  .then(() => upload(args))
+  zip(args);
+  upload(args)
   .then(() => {
     const params = {
       S3Bucket: args.bucket,
-      S3Key: args.key,
+      S3Key: args.key || `${args.name}.zip`,
       FunctionName: args.name,
       Publish: true,
     };
