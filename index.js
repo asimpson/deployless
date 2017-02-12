@@ -5,23 +5,29 @@ const path = require('path');
 const create = require('./actions/create');
 const update = require('./actions/update');
 
+const actions = {
+  create,
+  update,
+};
+
 const processArgs = (args) => {
-  if (args[2] !== 'create' && args[2] !== 'update') {
+  if (!actions[args[2]]) {
     console.log(`λ ${args[2]} is not a recognized command`);
     return false;
   }
   const options = args.slice(3).filter(x => /=/.test(x));
   const additionalFiles = args.slice(3)
-  .filter(x => !(/=/.test(x)))
-  .map(x => path.resolve(x));
+  .filter(x => !(/=/.test(x)));
 
   const optionObj = {};
   const optionKeys = options.map(x => x.split('=')[0]);
 
   /* eslint no-return-assign: 0 */
   options.forEach((x, i) => optionObj[optionKeys[i]] = x.split('=')[1]);
-  optionObj.files = additionalFiles;
-  optionObj.action = args[2] === 'create' ? create : update;
+  if (additionalFiles) {
+    optionObj.files = additionalFiles;
+  }
+  optionObj.action = actions[args[2]];
 
   return optionObj;
 };
