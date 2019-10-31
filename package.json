@@ -11,8 +11,8 @@
   "author": "Adam Simpson",
   "license": "ISC",
   "repository": {
-    "type" : "git",
-    "url" : "git@github.com:asimpson/deployless.git"
+    "type": "git",
+    "url": "git@github.com:asimpson/deployless.git"
   },
   "dependencies": {
     "aws-sdk": "^2.10.0",
